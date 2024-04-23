@@ -44,4 +44,4 @@ const slice = createSlice({
     })
 })
 
-export const aurhReducer = slice.reducer;
+export const authReducer = slice.reducer;
