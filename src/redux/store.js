@@ -43,4 +43,4 @@ middleware: getDefaultMiddleware =>
 
 
 export const persistor = persistStore(store);
-// export {store}
+ export {store}
