@@ -9,13 +9,13 @@ const setAuthHeader = token => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 const clearAuthHeader = () => {
-  axios.defaults.headers.common["Autorization"] = "";
+  axios.defaults.headers.common["Authorization"] = "";
 };
 
 
 export const register = createAsyncThunk("auth/register", async (newUser, thunkAPI) => {
     try {
-        const resp = await axios.post("/user/signup", newUser)
+        const resp = await axios.post("/users/signup", newUser)
         setAuthHeader(resp.data.token)
         return resp.data
     } catch (error) {
@@ -25,7 +25,7 @@ export const register = createAsyncThunk("auth/register", async (newUser, thunkA
 
 export const logIn = createAsyncThunk("auth/login", async (userInfo, thunkAPI) => {
     try {
-        const resp = await axios.post("/user/login", userInfo)
+        const resp = await axios.post("/users/login", userInfo)
         setAuthHeader(resp.data.token)
         return resp.data
     } catch (error) {
@@ -36,7 +36,7 @@ export const logIn = createAsyncThunk("auth/login", async (userInfo, thunkAPI) =
 
 export const logOut = createAsyncThunk("auth/logOut", async (_, thunkAPI) => {
     try {
-        const resp = await axios.post("/user/logOut")
+        const resp = await axios.post("/users/logOut")
         clearAuthHeader()
         return resp.data
     } catch (error) {
@@ -54,3 +54,4 @@ export const refreshUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) 
         const { auth: { token }, } = getState()
         return token !== null
 }})
+

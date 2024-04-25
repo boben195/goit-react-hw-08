@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 
 import { register } from "../../redux/auth/operations";
 
+import css from "../RegistrationForm/RegistrationForm.module.css";
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(register(values))
-      .wrap()
+      .unwrap()
       .then(() => {
         resetForm();
       })
@@ -37,22 +39,29 @@ const RegistrationForm = () => {
       initialValues={initialValues}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <label>
+      <Form className={css.container}>
+        <label className={css.text}>
           Name
-          <Field type="text" name="name" />
+          <Field className={css.input} type="text" name="name" />
         </label>
-        <label>
+        <label className={css.text}>
           Email
-          <Field placeholder="enter name" type="email" name="email" />
+          <Field
+            className={css.input}
+            placeholder="enter name"
+            type="email"
+            name="email"
+          />
         </label>
 
-        <label>
-          Number
-          <Field type="password" name="password" />
+        <label className={css.text}>
+          Password
+          <Field className={css.input} type="password" name="password" />
         </label>
 
-        <button type="submit">Register</button>
+        <button className={css.btn} type="submit">
+          REGISTER
+        </button>
       </Form>
     </Formik>
   );

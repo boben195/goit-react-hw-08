@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 
+import css from "../LoginForm/LoginForm.module.css";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -18,7 +20,7 @@ const LoginForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(logIn(values))
-      .wrap()
+      .unwrap()
       .then(() => {
         resetForm();
       })
@@ -30,18 +32,20 @@ const LoginForm = () => {
       initialValues={initialValues}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <label>
+      <Form className={css.container}>
+        <label className={css.text}>
           Email
-          <Field placeholder="enter name" type="email" name="email" />
+          <Field className={css.input} type="email" name="email" />
         </label>
 
-        <label>
-          Number
-          <Field type="password" name="password" />
+        <label className={css.text}>
+          Password
+          <Field className={css.input} type="password" name="password" />
         </label>
 
-        <button type="submit">Login</button>
+        <button className={css.btn} type="submit">
+          LOGIN
+        </button>
       </Form>
     </Formik>
   );

@@ -1,0 +1,11 @@
+.title {
+    color: antiquewhite;
+}
+
+.text {
+    color: rgb(78, 42, 167);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}

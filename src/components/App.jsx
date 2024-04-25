@@ -1,5 +1,6 @@
 import "./App.css";
 import Loader from "./Loader/Loader";
+import Layout from "./Layout/Layout";
 
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./RestrictedRoute/RestrictedRoute";
@@ -32,43 +33,46 @@ function App() {
 
   return (
     <>
-      {isRefreshing ? (
-        <Loader />
-      ) : (
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute
-                  component={<ContactsPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  component={<RegistrationPage />}
-                  redirectTo="/contacts"
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute
-                  component={<LoginPage />}
-                  redirectTo="/contacts"
-                />
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      )}
+      {" "}
+      <Layout>
+        {isRefreshing ? (
+          <Loader />
+        ) : (
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute
+                    component={<ContactsPage />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <RestrictedRoute
+                    component={<RegistrationPage />}
+                    redirectTo="/contacts"
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute
+                    component={<LoginPage />}
+                    redirectTo="/contacts"
+                  />
+                }
+              />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        )}
+      </Layout>
       <Toaster />
     </>
   );

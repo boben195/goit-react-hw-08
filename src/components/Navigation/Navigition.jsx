@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 import clsx from "clsx";
-import { css } from "../Navigation/Navigation.module.css";
+import css from "../Navigation/Navigation.module.css";
 
 const getNavLinkClass = ({ isActive }) =>
   clsx(css.headerLink, {
