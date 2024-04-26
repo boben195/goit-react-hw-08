@@ -1,5 +1,6 @@
 import {  createSlice } from "@reduxjs/toolkit";
 import { fetchContacts, addContact, deleteContact, updateContact } from "./operations";
+import {logOut} from "../auth/operations"
 const contactsSlice = createSlice({
   name: "contacts",
   initialState: {
@@ -51,6 +52,9 @@ const contactsSlice = createSlice({
       .addCase(updateContact.fulfilled, (state, action) => {
         const contactIndex = state.items.findIndex(item => item.id === action.payload.id);
         state.items[contactIndex] = action.payload
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.item = [];
     })
   }
 });

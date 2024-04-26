@@ -3,12 +3,14 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 import ContactList from "../../components/ContactList/ContactList";
 
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { fetchContacts } from "../../redux/contacts/operations";
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -19,7 +21,7 @@ const ContactsPage = () => {
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
-      <ContactList />
+      <ContactList contacts={contacts} />
     </div>
   );
 };
