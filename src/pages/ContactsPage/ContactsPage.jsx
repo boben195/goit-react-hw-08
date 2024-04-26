@@ -11,7 +11,7 @@ import { selectFilteredContacts } from "../../redux/contacts/selectors";
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
-
+  console.log(selectFilteredContacts);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
