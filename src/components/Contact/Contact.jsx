@@ -5,21 +5,27 @@ import css from "../Contact/Contact.module.css";
 
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import { useState, useEffect } from "react";
 
 const Contact = ({ contact }) => {
+  const [presContact, setPresContact] = useState({ ...contact });
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteContact(contact.id));
   };
+  useEffect(() => {
+    setPresContact({ ...contact });
+  }, []);
+
   return (
     <div>
       <p>
         <ImAccessibility className={css.icons} />
-        {contact.name}
+        {presContact.name}
       </p>
       <p>
         <FaPhoneAlt className={css.icons} />
-        {contact.number}
+        {presContact.number}
       </p>
       <button className={css.del} onClick={handleDelete}>
         delete

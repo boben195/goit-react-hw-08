@@ -41,6 +41,7 @@ function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
+
               <Route
                 path="/contacts"
                 element={

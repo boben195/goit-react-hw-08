@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import css from "../ContactForm/ContactForm.module.css";
-
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 
@@ -24,9 +24,18 @@ const initialValues = {
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact({ ...values }));
-    resetForm();
+  // const handleSubmit = (values, { resetForm }) => {
+  //   dispatch(addContact({ ...values }));
+  //   resetForm();
+  // };
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      dispatch(addContact({ id: Date.now, ...values }));
+      toast.success("Your contact is added");
+      resetForm();
+    } catch (error) {
+      toast.error("We cannot add your contact");
+    }
   };
 
   return (
