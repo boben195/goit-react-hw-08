@@ -5,6 +5,7 @@ import css from "../ContactForm/ContactForm.module.css";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import { useId } from "react";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -30,7 +31,7 @@ const ContactForm = () => {
   // };
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      dispatch(addContact({ id: Date.now, ...values }));
+      dispatch(addContact({ ...values }));
       toast.success("Your contact is added");
       resetForm();
     } catch (error) {

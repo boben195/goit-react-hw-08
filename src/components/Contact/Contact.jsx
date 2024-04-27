@@ -5,27 +5,29 @@ import css from "../Contact/Contact.module.css";
 
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
-import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+//import { useState, useEffect } from "react";
 
 const Contact = ({ contact }) => {
-  const [presContact, setPresContact] = useState({ ...contact });
+  //const [presContact, setPresContact] = useState({ ...contact });
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteContact(presContact.id));
+    dispatch(deleteContact(contact.id));
+    toast.success("delete");
   };
-  useEffect(() => {
-    setPresContact({ ...contact });
-  }, []);
+  // useEffect(() => {
+  //   setPresContact({ ...contact });
+  // }, [contact]);
 
   return (
     <div className={css.container}>
       <p>
         <ImAccessibility className={css.icons} />
-        {presContact.name}
+        {contact.name}
       </p>
       <p>
         <FaPhoneAlt className={css.icons} />
-        {presContact.number}
+        {contact.number}
       </p>
       <button className={css.del} onClick={handleDelete}>
         DELETE
