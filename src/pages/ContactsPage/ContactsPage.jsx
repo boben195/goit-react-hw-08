@@ -7,14 +7,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchContacts } from "../../redux/contacts/operations";
-import { selectFilteredContacts } from "../../redux/contacts/selectors";
+//import { selectFilteredContacts } from "../../redux/contacts/selectors";
 import { selectLoading } from "../../redux/contacts/selectors";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
 
-  const contacts = useSelector(selectFilteredContacts);
+  //const contacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -27,7 +27,7 @@ const ContactsPage = () => {
       <SearchBox />
       {loading && <Loader />}
 
-      <ContactList contacts={contacts} />
+      <ContactList />
     </div>
   );
 };

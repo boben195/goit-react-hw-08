@@ -4,3 +4,10 @@
 .del {
     background-color: rgb(225, 220, 220);
 }
+.container {
+    background-color: aqua;
+}
+
+.boo {
+    color: white
+}

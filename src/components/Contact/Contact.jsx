@@ -11,14 +11,14 @@ const Contact = ({ contact }) => {
   const [presContact, setPresContact] = useState({ ...contact });
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteContact(contact.id));
+    dispatch(deleteContact(presContact.id));
   };
   useEffect(() => {
     setPresContact({ ...contact });
   }, []);
 
   return (
-    <div>
+    <div className={css.container}>
       <p>
         <ImAccessibility className={css.icons} />
         {presContact.name}
@@ -28,7 +28,7 @@ const Contact = ({ contact }) => {
         {presContact.number}
       </p>
       <button className={css.del} onClick={handleDelete}>
-        delete
+        DELETE
       </button>
     </div>
   );
