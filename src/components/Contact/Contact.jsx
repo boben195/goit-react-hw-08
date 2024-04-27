@@ -8,13 +8,19 @@ import { deleteContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 //import { useState, useEffect } from "react";
 
-const Contact = ({ contact }) => {
+const Contact = ({ name, number, id }) => {
   //const [presContact, setPresContact] = useState({ ...contact });
   const dispatch = useDispatch();
   const handleDelete = () => {
-    dispatch(deleteContact(contact.id));
-    toast.success("delete");
+    dispatch(deleteContact(id))
+      .then(() => {
+        toast.success("delete");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
+
   // useEffect(() => {
   //   setPresContact({ ...contact });
   // }, [contact]);
@@ -23,11 +29,11 @@ const Contact = ({ contact }) => {
     <div className={css.container}>
       <p>
         <ImAccessibility className={css.icons} />
-        {contact.name}
+        {name}
       </p>
       <p>
         <FaPhoneAlt className={css.icons} />
-        {contact.number}
+        {number}
       </p>
       <button className={css.del} onClick={handleDelete}>
         DELETE
